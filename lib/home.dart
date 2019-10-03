@@ -15,7 +15,7 @@ final Widget placeholder = Container(color: Colors.grey);
 
 final List child = map<Widget>(
   imgList,
-      (index, i) {
+  (index, i) {
     return Container(
       margin: EdgeInsets.all(5.0),
       child: ClipRRect(
@@ -66,10 +66,7 @@ class HomeT extends StatefulWidget {
   _Home createState() => _Home();
 }
 
-
-class _Home extends State<HomeT>{
-
-
+class _Home extends State<HomeT> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
@@ -121,67 +118,45 @@ class _Home extends State<HomeT>{
 
   Widget home(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        centerTitle: true,
-        title: Text('Home'),
-        textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold
-            )
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          centerTitle: true,
+          title: Text('Home'),
+          textTheme: TextTheme(title: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         ),
-      ),
-        body: new Column(
+        body: Column(
           children: <Widget>[
-
-//              CarouselSlider(
-//              items: child,
-//              autoPlay: true,
-//              enlargeCenterPage: true,
-//              aspectRatio: 2.0,
-//            ),
-
-
-            new Expanded(
-                child: new GridView.builder(
-                    itemCount: 20,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                    physics: BouncingScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-
-                         if(index == 0){
-                           return CarouselSlider(
-                             items: child,
-                             autoPlay: true,
-                             enlargeCenterPage: true,
-                             aspectRatio: 2.0,
-                           );
-////                         return Text('hhe');
-//
-                         }
-//                         else{
-                           return Container(
-                             child: Hero(
-                               tag: 'image',
-                               child:  Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvkLs5kAh1yHb1qxTmvR_BPrkepfIPvswL5x1jDaH36GXtVQ8z',height: 10.0),
-                             ),
-                           );
-//                         }
-                    }
-                )
-            )
-
+            Expanded(
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                children: <Widget>[
+                  CarouselSlider(
+                    items: child,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: 2.0,
+                  ),
+                  new GridView.builder(
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: 20,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                      itemBuilder: (BuildContext context, int index) {
+                        print(index);
+                        return Container(
+                          child: Hero(
+                            tag: 'image',
+                            child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvkLs5kAh1yHb1qxTmvR_BPrkepfIPvswL5x1jDaH36GXtVQ8z', height: 10.0),
+                          ),
+                        );
+                      }),
+                ],
+              ),
+            ),
           ],
-        )
-//      body: ListView.builder(
-////              controller: newsfeedcontroller,
-//              itemCount: 4,
-//              itemBuilder: (BuildContext context, int index) {
-//                return itemFeed(context: context, index: index);
-//              })
-      );
+        ));
   }
 
   Widget grade(BuildContext context) {
@@ -191,17 +166,11 @@ class _Home extends State<HomeT>{
         elevation: 0.0,
         centerTitle: true,
         title: Text('Transactions'),
-        textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold
-            )
-        ),
+        textTheme: TextTheme(title: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: ListView(
         children: <Widget>[
           Text('Transactions'),
-
         ],
       ),
     );
@@ -214,12 +183,7 @@ class _Home extends State<HomeT>{
         elevation: 0.0,
         centerTitle: true,
         title: Text('Profile'),
-        textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold
-            )
-        ),
+        textTheme: TextTheme(title: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: ListView(
         children: <Widget>[
@@ -231,19 +195,10 @@ class _Home extends State<HomeT>{
 
   Widget itemFeed({BuildContext context, int index, bool hideName = false}) {
     return Container(
-      child:
-
-
-          Hero(
-            tag: 'image',
-            child:  Image.network('https://picsum.photos/250?image=8',height: 200.0),
-          ),
-
+      child: Hero(
+        tag: 'image',
+        child: Image.network('https://picsum.photos/250?image=8', height: 200.0),
+      ),
     );
   }
-
 }
-
-
-
-

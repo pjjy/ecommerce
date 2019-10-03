@@ -162,7 +162,6 @@ class _Home extends State<HomeT>{
 //
                          }
 //                         else{
-                          print(index);
                            return Container(
                              child: Hero(
                                tag: 'image',
